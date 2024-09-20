@@ -35,20 +35,20 @@ app.post('/personagem', function (req, res) {
     
     //testar se o nome esta presento no body
     if (!novoItem){
-        return res.send('Corpo da requisição deve conter a propriedade ´nome´.')
+        return res.status(400).send('Corpo da requisição deve conter a propriedade ´nome´.')
     }
  
 
     //testar se tem item duplicado
     if (lista.includes(novoItem)){
-        return res.send('Já existe este item na lista.')
+        return res.status(409).send('Já existe este item na lista.')
     }
 
     //adicionar na lista
     lista.push(novoItem)
 
     //exibir uma msg de sucesso
-    res.send('Item adicionado com sucesso!' + novoItem)
+    res.status(201).send('Item adicionado com sucesso!' + novoItem)
 } )
 
 //Endpoint Update [PUT]/personagem/:id
@@ -64,12 +64,12 @@ app.put('/personagem/:id', function (req, res){
 
      //testar se o nome esta presento no body
      if (!novoItem){
-        return res.send('Corpo da requisição deve conter a propriedade ´nome´.')
+        return res.status(400).send('Corpo da requisição deve conter a propriedade ´nome´.')
     } 
 
     //testar se tem item duplicado
     if (lista.includes(novoItem)){
-        return res.send('Já existe este item na lista.')
+        return res.status(409).send('Já existe este item na lista.')
     }
     
     //atualizamos na lista o novoItem pelo ID - 1

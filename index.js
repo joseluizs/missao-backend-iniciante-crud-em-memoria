@@ -6,6 +6,7 @@ app.get('/', function (req, res) {
 })
 
 const lista = ['Java', 'Kotlin', 'Android']
+
 //Endpoint Read all [GET] /personagem 
 app.get('/personagem', function (req, res){
     res.send(lista.filter(Boolean))
@@ -18,6 +19,11 @@ app.get('/personagem/:id', function (req, res){
 
     //acessar o item da lista usando o ID - 1
     const item = lista[id - 1]
+
+    //checamos se o item obtido é existente
+    if (!item) {
+        return res.status(404).send('Item não encontrado!')
+    }
     //Enviamos o item como resposta
     res.send(item)
 })
@@ -56,18 +62,24 @@ app.put('/personagem/:id', function (req, res){
     //acessamos o ID dos parametros da rota
     const id = req.params.id
 
+    //checar pra ver se o ID - 1 esta na lista
+    //exibir uma msg caso não esteja
+    if (!lista[id - 1]) {
+        return res.status(404).send('Item não encontrado!')
+    }
+
     //acessamos o body da requisição
     const body = req.body
     
     //acessamos a propriedade 'nome' do body
     const novoItem = body.nome
 
-     //testar se o nome esta presento no body
+     //checar se o nome esta presente no body
      if (!novoItem){
         return res.status(400).send('Corpo da requisição deve conter a propriedade ´nome´.')
     } 
 
-    //testar se tem item duplicado
+    //checar se tem item duplicado
     if (lista.includes(novoItem)){
         return res.status(409).send('Já existe este item na lista.')
     }
@@ -83,6 +95,12 @@ app.put('/personagem/:id', function (req, res){
 app.delete('/personagem/:id', function (req, res){
     //acessamos o parametro de rota
     const id =  req.params.id
+
+    //checar pra ver se o ID - 1 esta na lista
+    //exibir uma msg caso não esteja
+    if (!lista[id - 1]) {
+        return res.status(404).send('Item não encontrado!')
+    }
 
     //remover o item da lista usando o id - 1
     delete lista[id - 1]

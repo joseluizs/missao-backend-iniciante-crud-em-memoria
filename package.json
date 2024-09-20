@@ -1,0 +1,15 @@
+{
+  "name": "missao-backend-iniciante-crud-em-memoria",
+  "version": "1.0.0",
+  "description": "Projeto da Missão de Aprendizado do nível iniciante: CRUD em memória",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}

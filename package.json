@@ -4,12 +4,16 @@
   "description": "Projeto da Missão de Aprendizado do nível iniciante: CRUD em memória",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "dev": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.21.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.6"
   }
 }
